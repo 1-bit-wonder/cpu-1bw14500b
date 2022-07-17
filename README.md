@@ -6,7 +6,7 @@
 
 A microprocessor for decision-oriented tasks. It is well-suited to the implementation of ladder logic, and thus could be used to replace relay systems and programmable logic controllers, also intended for serial data manipulation.
 
-![MC14500B](https://github.com/1-bit-wonder/cpu-1b14500b/blob/main/mc14500b-cpu.png?raw=true)
+![MC14500B](https://github.com/1-bit-wonder/cpu-1bw14500b/blob/main/mc14500b-cpu.png?raw=true)
 ## Instruction set
 
 0000 NOPO -> No change in registers
