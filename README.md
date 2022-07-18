@@ -8,23 +8,24 @@ A microprocessor for decision-oriented tasks. It is well-suited to the implement
 
 ![MC14500B](https://github.com/1-bit-wonder/cpu-1bw14500b/blob/main/mc14500b-cpu.png?raw=true)
 ## Instruction set
-
-0000 NOPO -> No change in registers<br/>
-0001 LD   -> Load Result Reg. Data<br/>
-0010 LDC  -> Load Complement Data<br/>
-0011 AND  -> Logical AND<br/>
-0100 ANDC -> Logical AND Compl<br/>
-0101 OR   -> Logical OR<br/>
-0110 ORC  -> Logical OR Compl<br/>
-0111 XNOR -> Exclusive NOR<br/>
-1000 STO  -> Store<br/>
-1001 STOC -> Store Compl<br/>
-1010 IEN  -> Input Enable<br/>
-1011 OEN  -> Output Enable<br/>
-1100 JMP  -> Jump<br/>
-1101 RTN  -> Return<br/>
-1110 SKZ  -> Skip next instruction if result reg=0<br/>
-1111 NOPF -> No change in Registers<br/>
+| Binary | Opcode | Operation                                  |
+| ------ | ------ | ------------------------------------------ |
+| 0000   | NOPO   | No change in registers                     |
+| 0001   | LD     | Load Result Reg. Data                      |
+| 0010   | LDC    | Load Complement Data                       |
+| 0011   | AND    | Logical AND                                |
+| 0100   | ANDC   | Logical AND Complement                     |
+| 0101   | OR     | Logical OR                                 |
+| 0110   | ORC    | Logical OR Complement                      |
+| 0111   | XNOR   | Exclusive NOR                              |
+| 1000   | STO    | Store                                      |
+| 1001   | STOC   | Store Complement                           |
+| 1010   | IEN    | Input Enable                               |
+| 1011   | OEN    | Output Enable                              |
+| 1100   | JMP    | Jump                                       |
+| 1101   | RTN    | Return                                     |
+| 1110   | SKZ    | Skip next instruction if result reg=0      |
+| 1111   | NOPF   | No change in Registers                     |
 
 ## Resources
 
