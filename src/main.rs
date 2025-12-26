@@ -61,7 +61,7 @@ fn main() -> std::io::Result<()> {
     if let Some(index) = selection {
         let chosen_program = &programs[index];
 
-        let cycles: u32 = dialoguer::Input::with_theme(&ColorfulTheme::default())
+        let cycles: u32 = Input::with_theme(&ColorfulTheme::default())
             .with_prompt("How many cycles to run?")
             .default(10)
             .interact_text()?;
