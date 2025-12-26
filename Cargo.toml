@@ -6,6 +6,9 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+console = "0.15.2"
+dialoguer = "0.10.2"
 
 [dev-dependencies]
 test-case = "2.1.0"
+tempfile = "3.3.0"

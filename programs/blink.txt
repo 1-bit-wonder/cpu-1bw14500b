@@ -1,0 +1,4 @@
+LDC
+STO
+LD
+STO

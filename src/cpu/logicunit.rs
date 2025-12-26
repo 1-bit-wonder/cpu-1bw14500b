@@ -1,5 +1,9 @@
 use super::opcode::Opcode;
 
+/// Represents the 1-bit Logic Unit (LU) of the MC14500B.
+///
+/// The LU is responsible for performing the logical operations of the CPU.
+/// It takes the current state of the result register and the data bus as input.
 #[derive(Debug)]
 pub struct LU {
     pub result_reg: bool,
@@ -7,13 +11,12 @@ pub struct LU {
 }
 
 impl LU {
-    pub fn new() -> Self {
-        return Self {
-            result_reg: false,
-            data: false,
-        };
-    }
-
+    /// Performs a logical operation based on the given opcode.
+    ///
+    /// This method takes ownership of `self` because it represents a single,
+    /// self-contained computation. It returns the new boolean state of the
+    /// result register after the operation.
+    /// Non-logical opcodes result in no change.
     pub fn operation(self, code: Opcode) -> bool {
         match code {
             Opcode::LD => self.data,
