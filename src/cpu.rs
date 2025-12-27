@@ -1,8 +1,3 @@
-//! The core of the MC14500B CPU simulation.
-//!
-//! This module contains the `Cpu` struct, which represents the state of the 1-bit processor,
-//! and the `run_program` function, which executes a given program.
-
 use self::opcode::Opcode;
 use logicunit::LU;
 mod logicunit;
@@ -10,23 +5,23 @@ pub mod opcode;
 pub mod program_loader;
 
 #[derive(Debug, Default)]
-struct Cpu {
-    pc: u8,
-    program: Vec<Opcode>,
-    lu: LU,
-    jmp_flag: bool,
-    rtn_flag: bool,
+pub struct Cpu {
+    pub pc: u8,
+    pub program: Vec<Opcode>,
+    pub lu: LU,
+    pub jmp_flag: bool,
+    pub rtn_flag: bool,
 }
 
 impl Cpu {
-    fn new(program: Vec<Opcode>) -> Self {
+    pub fn new(program: Vec<Opcode>) -> Self {
         Self {
             program,
             ..Self::default()
         }
     }
 
-    fn step(&mut self, data_bus: bool) -> Option<bool> {
+    pub fn step(&mut self, data_bus: bool) -> Option<bool> {
         let instruction = &self.program[self.pc as usize];
 
         self.lu.execute(*instruction, data_bus);
@@ -64,41 +59,28 @@ impl Cpu {
     }
 }
 
-/// Runs a program on the CPU simulator for a specified number of cycles.
-///
-/// This function initializes a new CPU instance and executes the program.
-/// For demonstration purposes, it prepends instructions to enable IEN and OEN
-/// so that the example programs can run correctly.
-///
-/// # Arguments
-///
-/// * `program` - A `Vec<Opcode>` representing the program to be executed.
-/// * `num_cycles` - The number of simulation cycles to run.
-///
-/// # Returns
-///
-/// A `Vec<bool>` containing the values that were sent to the output during the simulation.
-pub fn run_program(program: Vec<Opcode>, num_cycles: u32) -> Vec<bool> {
-    let mut cpu = Cpu::new(program);
-    // Manually enable IEN and OEN for testing purposes.
-    cpu.lu.ien = true;
-    cpu.lu.oen = true;
-
-    let mut outputs = Vec::new();
-
-    for _ in 0..num_cycles {
-        // In this simple model, the data bus is always false (0)
-        let data_bus = false;
-        if let Some(output) = cpu.step(data_bus) {
-            outputs.push(output);
-        }
-    }
-    outputs
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    /// Test helper to run a program and collect outputs.
+    fn run_program(program: Vec<Opcode>, num_cycles: u32) -> Vec<bool> {
+        let mut cpu = Cpu::new(program);
+        // Manually enable IEN and OEN for testing purposes.
+        cpu.lu.ien = true;
+        cpu.lu.oen = true;
+
+        let mut outputs = Vec::new();
+
+        for _ in 0..num_cycles {
+            // In this simple model, the data bus is always false (0)
+            let data_bus = false;
+            if let Some(output) = cpu.step(data_bus) {
+                outputs.push(output);
+            }
+        }
+        outputs
+    }
 
     #[test]
     fn test_gating_instructions() {

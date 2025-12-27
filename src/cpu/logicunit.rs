@@ -12,11 +12,6 @@ pub struct LU {
 }
 
 impl LU {
-    /// Creates a new `LU` with default values (all flags and registers set to `false`).
-    pub fn new() -> Self {
-        Self::default()
-    }
-
     /// Executes a single instruction, modifying the LU's internal state.
     ///
     /// The `data` parameter represents the state of the external data bus.
@@ -55,7 +50,7 @@ mod tests {
 
     #[test]
     fn test_logical_ops_when_gated_open() {
-        let mut lu = LU::new();
+        let mut lu = LU::default();
         lu.ien = true; // Open the gate
 
         // Test LD
@@ -74,7 +69,7 @@ mod tests {
 
     #[test]
     fn test_gated_input_when_closed() {
-        let mut lu = LU::new();
+        let mut lu = LU::default();
         lu.ien = false; // Close the gate
         lu.result_reg = false;
 
@@ -96,7 +91,7 @@ mod tests {
 
     #[test]
     fn test_gate_toggle_instructions() {
-        let mut lu = LU::new();
+        let mut lu = LU::default();
         assert_eq!(lu.ien, false);
         assert_eq!(lu.oen, false);
 
