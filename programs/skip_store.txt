@@ -1,0 +1,8 @@
+LD
+STO
+SKZ
+STO
+LDC
+STO
+SKZ
+STO

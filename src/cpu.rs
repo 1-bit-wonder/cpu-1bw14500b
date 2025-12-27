@@ -232,4 +232,18 @@ mod tests {
         cpu_stoc_disabled.result_reg = true;
         assert_eq!(cpu_stoc_disabled.step(false), None);
     }
+
+    #[test]
+    fn test_run_skip_store_program() {
+        let program = program_loader::load_program("programs/skip_store.txt").unwrap();
+        let outputs = run_program(program, 8);
+        assert_eq!(outputs, vec![false, true, true]);
+    }
+
+    #[test]
+    fn test_run_logic_demo_program() {
+        let program = program_loader::load_program("programs/logic_demo.txt").unwrap();
+        let outputs = run_program(program, 8);
+        assert_eq!(outputs, vec![true, false, true, false]);
+    }
 }
